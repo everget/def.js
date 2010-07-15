@@ -13,7 +13,7 @@ Simple Ruby-style inheritance for JavaScript
 		}
 	});
 	
-	def ("Ninja") < Person ({
+	def ("Ninja") << Person ({
 		init: function (name) {
 			this.base(name);
 		},
