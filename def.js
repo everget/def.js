@@ -23,7 +23,7 @@
         for (var key in source) if (source.hasOwnProperty(key)) {
             property = target[key] = source[key];
             if (typeof property == "function") {
-                property.name = key;
+                property._name = key;
                 property._class = this;
             }
         }
@@ -36,7 +36,7 @@
         // create class on given context (defaults to global object)
         var Klass = context[klassName] = function Klass() {
             // called as a constructor
-            if (this != context) {
+            if (this.constructor === Klass) { // TODO:
                 // allow the constructor to return a different class/object
                 return this.init && this.init.apply(this, arguments);
             }
@@ -79,7 +79,7 @@
     // based on http://github.com/shergin/legacy by shergin
     function base() {
         var caller = base.caller;
-        return caller._class._super.prototype[caller.name].apply(this, arguments);
+        return caller._class._super.prototype[caller._name].apply(this, arguments);
     }
 
     // expose
