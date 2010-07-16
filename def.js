@@ -36,7 +36,7 @@
         // create class on given context (defaults to global object)
         var Klass = context[klassName] = function Klass() {
             // called as a constructor
-            if (this.constructor === Klass) { // TODO:
+            if (context != this) {
                 // allow the constructor to return a different class/object
                 return this.init && this.init.apply(this, arguments);
             }
